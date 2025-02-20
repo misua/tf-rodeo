@@ -56,6 +56,10 @@ Thumbs.db
 docker-volumes/
 
 # API Keys and Secrets
+.env
+.env.*
+!.env.example
+**/sk-ant-api03-*
 **/anthropic-secret.json
 **/secrets/
 **/credentials/
