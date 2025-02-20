@@ -12,7 +12,8 @@ To view this diagram:
 
 ```mermaid
 graph TB
-    Internet((Internet)) --> IGW[Internet Gateway]
+    Internet((Internet)) --> WAF[WAF Rules]
+    WAF --> IGW[Internet Gateway]
     IGW --> PublicSubnet1[Public Subnet AZ1]
     IGW --> PublicSubnet2[Public Subnet AZ2]
     
@@ -35,7 +36,6 @@ graph TB
         subgraph Security
             SG[Security Groups]
             NACL[Network ACLs]
-            WAF[WAF Rules]
         end
         
         subgraph Monitoring
@@ -43,6 +43,15 @@ graph TB
             SNS[SNS Alerts]
         end
     end
+    
+    %% Security connections
+    SG --> DB1
+    SG --> DB2
+    SG --> NAT
+    NACL --> PublicSubnet1
+    NACL --> PublicSubnet2
+    NACL --> PrivateSubnet1
+    NACL --> PrivateSubnet2
     
     PrivateSubnet1 --> DB1
     PrivateSubnet2 --> DB2
